@@ -1,0 +1,7 @@
+#!/bin/bash
+
+aws s3api list-object-versions --bucket akash-portfolio-site
+aws s3api delete-object \
+  --bucket akash-portfolio-site \
+  --key index.html \
+  --version-id <DeleteMarkerVersionId>
