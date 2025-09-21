@@ -1,18 +1,35 @@
 # Disaster-Recovery-project
 built a CI/CD pipeline where code from GitHub is deployed to an S3 bucket with versioning enabled, fronted by CloudFront for global delivery. If a file accidentally deleted, can be restored instantly from version history without downtime. Setup also uses Route 53 for DNS and Jenkins for automation, ensuring both performance and disaster recovery.
 
+<img width="341" height="538" alt="image" src="https://github.com/user-attachments/assets/048653a9-6ac5-4f5b-acef-97354f6bc5f6" />
+
 
 # Architecture Overview Flow:
 
-1. Developer pushes code → GitHub.
+1. GitHub → Jenkins
 
-2. Jenkins pipeline builds & deploys static site to S3 bucket (Versioning enabled).
+* Developer pushes code to GitHub.
 
-3. CloudFront serves content globally with low latency.
+* Jenkins pipeline triggers automatically.
 
-4. Route 53 maps a custom domain to CloudFront.
+2. Jenkins → S3 (Versioning Enabled)
 
-5. Disaster Recovery: If a file is deleted, restore from S3 version history.
+* Pipeline builds and deploys static site files to S3.
+
+* Versioning ensures every change is stored, enabling rollback.
+
+3. S3 → CloudFront → Route 53
+
+* CloudFront caches and serves content globally.
+
+* Route 53 maps your custom domain to CloudFront.
+
+4. Disaster Recovery Loop
+
+* If a file is deleted, S3’s version history allows instant restoration.
+
+* No downtime for users because CloudFront continues serving cached content.
+
 
 
 # Tech Stack
