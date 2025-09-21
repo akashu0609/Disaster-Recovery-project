@@ -1,0 +1,10 @@
+#!/bin/bash
+
+aws s3api create-bucket \
+  --bucket akash-portfolio-site \
+  --region ap-south-1 \
+  --create-bucket-configuration LocationConstraint=ap-south-1
+
+aws s3api put-bucket-versioning \
+  --bucket akash-portfolio-site \
+  --versioning-configuration Status=Enabled
