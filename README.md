@@ -99,6 +99,13 @@ aws s3 cp file1.txt s3://akash-website-versioning/
 
 aws s3 rm s3://akash-website-versioning/file1.txt
 
+At this point, the file is not truly gone — a delete marker is added.
+
+* View All Versions
+
+aws s3api list-object-versions --bucket akash-demo-versioning
+
+
 * Recover with below script:
 
 aws s3api list-object-versions --bucket akash-website-versioning
