@@ -53,12 +53,12 @@ built a CI/CD pipeline where code from GitHub is deployed to an S3 bucket with v
 1️⃣ Create S3 Bucket with Versioning
 
 "aws s3api create-bucket \
-  --bucket akash-portfolio-site \
+  --bucket akash-website-versioning \
   --region ap-south-1 \
   --create-bucket-configuration LocationConstraint=ap-south-1"
 
 "aws s3api put-bucket-versioning \
-  --bucket akash-portfolio-site \
+  --bucket akash-website-versioning \
   --versioning-configuration Status=Enabled"
 
 * Enable static website hosting in the S3 console.
@@ -88,12 +88,22 @@ built a CI/CD pipeline where code from GitHub is deployed to an S3 bucket with v
 
 
 5️⃣ Disaster Recovery Simulation
-* Delete a file from S3.
+
+* Upload a file:
+
+echo "This is my original file" > file1.txt
+aws s3 cp file1.txt s3://akash-website-versioning/
+
+
+* Delete a file from S3:
+
+aws s3 rm s3://akash-website-versioning/file1.txt
+
 * Recover with below script:
 
-aws s3api list-object-versions --bucket akash-portfolio-site
+aws s3api list-object-versions --bucket akash-website-versioning
 aws s3api delete-object \
-  --bucket akash-portfolio-site \
+  --bucket akash-website-versioning \
   --key index.html \
   --version-id <DeleteMarkerVersionId>
 
