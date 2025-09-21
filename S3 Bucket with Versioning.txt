@@ -1,10 +1,12 @@
 #!/bin/bash
 
+# Create bucket (replace with unique name & region)
 aws s3api create-bucket \
-  --bucket akash-portfolio-site \
+  --bucket akash-website-versioning \
   --region ap-south-1 \
   --create-bucket-configuration LocationConstraint=ap-south-1
 
+# Enable versioning
 aws s3api put-bucket-versioning \
-  --bucket akash-portfolio-site \
+  --bucket akash-website-versioning \
   --versioning-configuration Status=Enabled
