@@ -1,0 +1,6 @@
+#!/bin/bash
+
+aws s3api get-object \
+  --bucket akash-website-versioning \
+  --key file1.txt \
+  --version-id <OriginalVersionId> restored_file1.txt
