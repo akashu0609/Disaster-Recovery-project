@@ -1,0 +1,4 @@
+#!/bin/bash
+
+aws s3api delete-object --bucket akash-website-versioning --key file1.txt --version-id <OriginalVersionId>
+aws s3api delete-bucket --bucket akash-website-versioning
