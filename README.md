@@ -67,7 +67,26 @@ built a CI/CD pipeline where code from GitHub is deployed to an S3 bucket with v
 
 4️⃣ Jenkins CI/CD Pipeline
 
-* Jenkinsfile example:
+* Jenkinsfile.groovy
 
 
+5️⃣ Disaster Recovery Simulation
+* Delete a file from S3.
+* Recover with below script:
 
+aws s3api list-object-versions --bucket akash-portfolio-site
+aws s3api delete-object \
+  --bucket akash-portfolio-site \
+  --key index.html \
+  --version-id <DeleteMarkerVersionId>
+
+* This removes the delete marker, restoring the file instantly.
+
+
+6️⃣ Optional Enhancements
+
+* Terraform to provision S3, CloudFront, Route 53.
+
+* MFA Delete for extra protection.
+
+* CloudWatch Alarms for unauthorized deletions.
